@@ -31,10 +31,5 @@ jobs:
         run: npm run lint
 
       - name: Publish to npm
-        run: |
-          if [ ${{ steps.test.outcome }} == 'success' ] && [ ${{ steps.lint.outcome }} == 'success' ]; then
-            echo "//registry.npmjs.org/:_authToken=\${{ secrets.NPM_AUTH_TOKEN }}" > ~/.npmrc
-            npm publish --access public
-          else
-            echo "Tests or linting failed. Skipping npm publish."
-          fi
+        run:  echo "//registry.npmjs.org/:_authToken=\${{ secrets.NPM_AUTH_TOKEN }}" > ~/.npmrc
+              npm publish --access public
